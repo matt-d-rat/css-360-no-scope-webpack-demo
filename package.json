@@ -1,0 +1,40 @@
+{
+  "name": "css-360-no-scope-webpack-demo",
+  "private": true,
+  "version": "1.0.0",
+  "description": "A demo of CSS Modules using a bare minimum webpack setup.",
+  "main": "",
+  "scripts": {
+    "test": ""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/matt-d-rat/css-360-no-scope-webpack-demo.git"
+  },
+  "keywords": [
+    "css",
+    "modules",
+    "scope",
+    "matt fairbrass",
+    "presentation",
+    "demo",
+    "talk",
+    "SydCSS",
+    "meetup"
+  ],
+  "author": "Matt Fairbrass <matt@mattfairbrass.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/matt-d-rat/css-360-no-scope-webpack-demo/issues"
+  },
+  "homepage": "https://github.com/matt-d-rat/css-360-no-scope-webpack-demo#readme",
+  "devDependencies": {
+    "css-loader": "^0.23.0",
+    "node-sass": "^3.4.2",
+    "open": "0.0.5",
+    "sass-loader": "^3.1.2",
+    "style-loader": "^0.13.0",
+    "webpack": "^1.12.9",
+    "webpack-dev-server": "^1.14.0"
+  }
+}
