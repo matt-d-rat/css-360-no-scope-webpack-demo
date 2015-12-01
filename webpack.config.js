@@ -1,51 +1,45 @@
-var webpack = require('webpack');
+'use strict';
+
 var path = require('path');
+var args = require('minimist')(process.argv.slice(2));
 
-var port = 8000;
-var srcPath = path.join(__dirname, '/src');
-var publicPath = '/build/';
+// List of allowed environments
+var allowedEnvs = ['dev', 'dist', 'test'];
 
-module.exports = {
-    port: port,
-    debug: true,
-    cache: true,
-    devtool: 'sourcemap',
-    entry: [
-        'webpack-dev-server/client?http://127.0.0.1:' + port,
-        'webpack/hot/only-dev-server',
-        './src/index'
-    ],
-    output: {
-        path: path.join(__dirname, '/dist/build'),
-        filename: 'app.js',
-        publicPath: publicPath
-    },
-    devServer: {
-        contentBase: './src/',
-        hot: true,
-        port: port,
-        publicPath: publicPath,
-        noInfo: false
-    },
-    resolve: {
-        modulesDirectories: ['node_modules'],
-    },
-    module: {
-        loaders: [
-            {
-                test: /\.css$/,
-                exclude: /node_modules/,
-                loader: 'style-loader!css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]'
-            },
-            {
-                test: /\.scss/,
-                exclude: /node_modules/,
-                loader: 'style-loader!css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!sass-loader?outputStyle=expanded'
-            }
-        ]
-    },
-    plugins: [
-        new webpack.HotModuleReplacementPlugin(),
-        new webpack.NoErrorsPlugin()
-    ]
+// Set the correct environment
+var env;
+if(args._.length > 0 && args._.indexOf('start') !== -1) {
+    env = 'test';
+} else if (args.env) {
+    env = args.env;
+} else {
+    env = 'dev';
+}
+
+// Get available configurations
+var configs = {
+    dev: require(path.join(__dirname, 'cfg/dev')),
+    dist: require(path.join(__dirname, 'cfg/dist'))
 };
+
+/**
+ * Get an allowed environment
+ * @param  {String}  env
+ * @return {String}
+ */
+function getValidEnv(env) {
+    var isValid = env && env.length > 0 && allowedEnvs.indexOf(env) !== -1;
+    return isValid ? env : 'dev';
+}
+
+/**
+ * Build the webpack configuration
+ * @param  {String} env Environment to use
+ * @return {Object} Webpack config
+ */
+function buildConfig(env) {
+    var usedEnv = getValidEnv(env);
+    return configs[usedEnv];
+}
+
+module.exports = buildConfig(env);
