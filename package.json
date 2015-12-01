@@ -5,6 +5,7 @@
   "description": "A demo of CSS Modules using a bare minimum webpack setup.",
   "main": "",
   "scripts": {
+    "start": "node server.js --env=dev",
     "test": ""
   },
   "repository": {
