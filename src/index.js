@@ -1,7 +1,7 @@
 'use strict';
 
-// Import global css
-require('./index.css');
+// Import global scss
+require('./index.scss');
 
 // Import components
 require('./components/button');

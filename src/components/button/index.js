@@ -1,8 +1,8 @@
 'use strict';
 
 (function(window, document, undefined){
-    // Import the CSS and assign to variable as an object mapping of the class names.
-    var styles = require('./Button.css');
+    // Import the SCSS and assign to variable as an object mapping of the class names.
+    var styles = require('./Button.scss');
 
     // Create a new element and add some content
     var button = document.createElement('button'); 

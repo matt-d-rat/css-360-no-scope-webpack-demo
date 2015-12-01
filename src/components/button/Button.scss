@@ -1,3 +1,5 @@
+$color-primary: #ff0000;
+
 .primary {
     display: block;
     font-size: 2rem;
@@ -6,5 +8,5 @@
 }
 
 .primary--danger {
-    background-color: red;
+    background-color: $color-primary;
 }
